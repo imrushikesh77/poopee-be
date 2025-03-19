@@ -1,4 +1,4 @@
-import express from "express"
+import express, { Request, Response } from "express"
 import cors from "cors"
 import dotenv from "dotenv"
 dotenv.config();
@@ -11,12 +11,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-app.get("/health", (req, res) => {
+app.get("/health", (req: Request, res: Response) => {
     res.status(200).send("OK");
 });
 
 app.use("/api", toiletRouter)
-app.use("*", (req, res) => {
+app.use("*", (req: Request, res: Response) => {
     res.status(404).send("Not Found");
 }
 );
